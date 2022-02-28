@@ -307,15 +307,6 @@ class _NoteEditPageState extends State<NoteEditPage> {
                       }
                     }, //do your action
                   ),
-                  RawMaterialButton(
-                    child: const Icon(Icons.mic_none_outlined),
-                    elevation: 0.0,
-                    constraints:
-                        const BoxConstraints(), //removes empty spaces around of icon
-                    shape: const BeveledRectangleBorder(), //circular button
-                    fillColor: Colors.transparent, //background color
-                    onPressed: () {}, //do your action
-                  ),
                 ],
               ),
             ),

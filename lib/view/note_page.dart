@@ -122,9 +122,8 @@ class _NotePageState extends State<NotePage> {
           }
         },
       ),
-      floatingActionButtonLocation: _selectedNotes.isEmpty
-          ? FloatingActionButtonLocation.endDocked
-          : null,
+      floatingActionButtonLocation:
+          _selectedNotes.isEmpty ? FloatingActionButtonLocation.endFloat : null,
       floatingActionButton: _selectedNotes.isEmpty
           ? FloatingActionButton(
               onPressed: () {
@@ -142,7 +141,7 @@ class _NotePageState extends State<NotePage> {
             )
           : null,
       bottomNavigationBar: _selectedNotes.isEmpty
-          ? const _BottomAppBar()
+          ? null
           : _RemoveModeBottomAppBar(
               selectedNotes: _selectedNotes,
               onRemoveSelectedNotes: () {
