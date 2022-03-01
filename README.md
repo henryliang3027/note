@@ -15,9 +15,13 @@ Note is built using flutter-bloc and stores the notes using Hive.
 </p>
 
 <h4 align="center">
-1. Add/Edit Note Screen : add a new notes or edit note
+2. Add/Edit Note Screen : add a new notes or edit note
+  2.1 You can add photos from gallery/camera or draw some pictures in your note
+  2.2 You can select your note color
 </h4>
 
 <p align="center">
- <img src="https://user-images.githubusercontent.com/90501505/156222517-78203401-a10d-48e7-8467-2fc312c1c57c.jpg" width="300" height="600">  
-</p>
+ <img src="https://user-images.githubusercontent.com/90501505/156223097-040ab2ee-87fc-4158-9394-83fa58dea820.jpg" width="300" height="600"> 
+ <img src="https://user-images.githubusercontent.com/90501505/156223097-040ab2ee-87fc-4158-9394-83fa58dea820.jpg
+</p>" width="300" height="600"> 
+  
