@@ -35,6 +35,6 @@ Note is built using flutter-bloc and stores the notes using Hive.
 <p align="center">
  <img src="https://user-images.githubusercontent.com/90501505/156223097-040ab2ee-87fc-4158-9394-83fa58dea820.jpg" width="200" height="400"> 
  <img src="https://user-images.githubusercontent.com/90501505/156224173-c6bfd92b-4c4b-43c1-ab6b-e20b843bdde6.jpg" width="200" height="400">
- <img src="https://user-images.githubusercontent.com/90501505/156224407-3879d8d5-8266-412b-b177-bbe502de7df7.jpg" width="200" height="400">
+ <img src="https://user-images.githubusercontent.com/90501505/156228002-366cb525-fc72-4ab5-b0a9-3a2f7762c956.jpg" width="200" height="400">
  <img src="https://user-images.githubusercontent.com/90501505/156224420-1e428068-fd9d-4fdf-a0b1-e0ef3749340f.jpg" width="200" height="400">
 </p>"
