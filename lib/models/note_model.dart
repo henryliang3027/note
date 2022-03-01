@@ -40,7 +40,7 @@ class ImageContent {
   final String path;
 
   @HiveField(2)
-  final List<DrawnLine?> lines;
+  final List<DrawLine?> lines;
 }
 
 @HiveType(typeId: 3)

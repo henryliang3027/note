@@ -6,17 +6,17 @@ part of 'drawn_line.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DrawnLineAdapter extends TypeAdapter<DrawnLine> {
+class DrawLineAdapter extends TypeAdapter<DrawLine> {
   @override
   final int typeId = 4;
 
   @override
-  DrawnLine read(BinaryReader reader) {
+  DrawLine read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return DrawnLine(
+    return DrawLine(
       path: (fields[0] as List).cast<Offset>(),
       colorHex: fields[1] as int,
       width: fields[3] as double,
@@ -24,7 +24,7 @@ class DrawnLineAdapter extends TypeAdapter<DrawnLine> {
   }
 
   @override
-  void write(BinaryWriter writer, DrawnLine obj) {
+  void write(BinaryWriter writer, DrawLine obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -41,7 +41,7 @@ class DrawnLineAdapter extends TypeAdapter<DrawnLine> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DrawnLineAdapter &&
+      other is DrawLineAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 part 'drawn_line.g.dart';
 
 @HiveType(typeId: 4)
-class DrawnLine {
+class DrawLine {
   @HiveField(0)
   final List<Offset> path;
 
@@ -14,7 +14,7 @@ class DrawnLine {
   @HiveField(3)
   final double width;
 
-  DrawnLine(
+  DrawLine(
       {this.path = const <Offset>[],
       this.colorHex = 0x00000000,
       this.width = 0.5});

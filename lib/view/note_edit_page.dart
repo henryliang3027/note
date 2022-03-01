@@ -245,7 +245,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
                         ImageContent imageContent = ImageContent(
                           imageType: ImageType.photo,
                           path: res[0].path,
-                          lines: <DrawnLine>[],
+                          lines: <DrawLine>[],
                         );
                         setState(() {
                           _imageContents.add(imageContent);
@@ -276,7 +276,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
                         ImageContent imageContent = ImageContent(
                           imageType: ImageType.photo,
                           path: newFilePath,
-                          lines: <DrawnLine>[],
+                          lines: <DrawLine>[],
                         );
                         setState(() {
                           _imageContents.add(imageContent);

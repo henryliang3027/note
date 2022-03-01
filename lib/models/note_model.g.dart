@@ -62,7 +62,7 @@ class ImageContentAdapter extends TypeAdapter<ImageContent> {
     return ImageContent(
       imageType: fields[0] as ImageType,
       path: fields[1] as String,
-      lines: (fields[2] as List).cast<DrawnLine?>(),
+      lines: (fields[2] as List).cast<DrawLine?>(),
     );
   }
 

@@ -12,7 +12,7 @@ Future<void> main() async {
     Hive.registerAdapter<Note>(NoteAdapter());
     Hive.registerAdapter<ImageContent>(ImageContentAdapter());
     Hive.registerAdapter<ImageType>(ImageTypeAdapter());
-    Hive.registerAdapter<DrawnLine>(DrawnLineAdapter());
+    Hive.registerAdapter<DrawLine>(DrawLineAdapter());
     Hive.registerAdapter<Offset>(OffsetAdapter());
     await Hive.openBox<Note>('Note');
     runApp(App(
