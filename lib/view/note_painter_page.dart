@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note/models/drawn_line.dart';
 import 'package:note/models/note_model.dart';
 import 'package:note/patterns/draw_line_manager.dart';
+import 'package:note/repositories/file_repostory.dart';
 import 'package:note/view/widgets/sketcker.dart';
 import 'package:flutter/rendering.dart';
-import 'package:note/utils/utils.dart';
 import 'dart:ui' as ui;
 
 class NotePainterPage extends StatefulWidget {
@@ -151,7 +152,9 @@ class _NotePainterPageState extends State<NotePainterPage> {
       ByteData? byteData =
           await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List? pngBytes = byteData!.buffer.asUint8List();
-      String _imageSavePath = await Util.saveToTemporaryDirectory(pngBytes);
+      String _imageSavePath =
+          await RepositoryProvider.of<FileRepository>(context)
+              .saveToTemporaryDirectory(pngBytes);
 
       // if (path != null) {
       //   File(path!).delete();

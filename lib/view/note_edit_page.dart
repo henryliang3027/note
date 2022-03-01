@@ -4,11 +4,11 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:note/bloc/note_bloc.dart';
 import 'package:note/models/drawn_line.dart';
 import 'package:note/models/note_model.dart';
+import 'package:note/repositories/file_repostory.dart';
 import 'package:note/view/note_painter_page.dart';
 import 'package:note/view/photo_edit_page.dart';
 import 'widgets/color_picker.dart';
 import 'package:images_picker/images_picker.dart';
-import 'package:note/utils/utils.dart';
 import 'dart:io';
 
 class NoteEditPage extends StatefulWidget {
@@ -270,7 +270,8 @@ class _NoteEditPageState extends State<NoteEditPage> {
                       print(res);
                       if (res != null) {
                         String newFilePath =
-                            await Util.copyToTemporaryDirectory(res[0].path);
+                            await RepositoryProvider.of<FileRepository>(context)
+                                .copyToTemporaryDirectory(res[0].path);
 
                         ImageContent imageContent = ImageContent(
                           imageType: ImageType.photo,
