@@ -6,19 +6,22 @@ import 'package:note/repositories/note_repository.dart';
 import 'package:note/view/note_page.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key, required this.noteRepository}) : super(key: key);
+  const App(
+      {Key? key, required this.noteRepository, required this.fileRepository})
+      : super(key: key);
 
   final NoteRepository noteRepository;
+  final FileRepository fileRepository;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<NoteRepository>(
-          create: (context) => NoteRepository(),
+          create: (context) => noteRepository,
         ),
         RepositoryProvider<FileRepository>(
-          create: (context) => FileRepository(),
+          create: (context) => fileRepository,
         )
       ],
       child: BlocProvider(

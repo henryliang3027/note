@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note/app.dart';
 import 'package:note/models/drawn_line.dart';
 import 'package:note/models/note_model.dart';
+import 'package:note/repositories/file_repostory.dart';
 import 'package:note/repositories/note_repository.dart';
 
 Future<void> main() async {
@@ -14,6 +15,9 @@ Future<void> main() async {
     Hive.registerAdapter<DrawnLine>(DrawnLineAdapter());
     Hive.registerAdapter<Offset>(OffsetAdapter());
     await Hive.openBox<Note>('Note');
-    runApp(App(noteRepository: NoteRepository()));
+    runApp(App(
+      noteRepository: NoteRepository(),
+      fileRepository: FileRepository(),
+    ));
   }
 }
