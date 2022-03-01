@@ -22,6 +22,6 @@ Note is built using flutter-bloc and stores the notes using Hive.
 
 <p align="center">
  <img src="https://user-images.githubusercontent.com/90501505/156223097-040ab2ee-87fc-4158-9394-83fa58dea820.jpg" width="300" height="600"> 
- <img src="https://user-images.githubusercontent.com/90501505/156223097-040ab2ee-87fc-4158-9394-83fa58dea820.jpg
+ <img src="https://user-images.githubusercontent.com/90501505/156223097-040ab2ee-87fc-4158-9394-83fa58dea820.jpg" width="300" height="600"
 </p>" width="300" height="600"> 
   
