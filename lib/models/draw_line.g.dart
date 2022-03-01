@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'drawn_line.dart';
+part of 'draw_line.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

@@ -1,4 +1,4 @@
-import 'package:note/models/drawn_line.dart';
+import 'package:note/models/draw_line.dart';
 
 class DrawLineManager {
   DrawLineManager()

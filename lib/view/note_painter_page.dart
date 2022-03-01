@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:note/models/drawn_line.dart';
+import 'package:note/models/draw_line.dart';
 import 'package:note/models/note_model.dart';
 import 'package:note/manager/draw_line_manager.dart';
 import 'package:note/repositories/file_repostory.dart';

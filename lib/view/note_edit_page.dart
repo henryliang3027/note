@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:note/bloc/note_bloc.dart';
-import 'package:note/models/drawn_line.dart';
+import 'package:note/models/draw_line.dart';
 import 'package:note/models/note_model.dart';
 import 'package:note/repositories/file_repostory.dart';
 import 'package:note/view/note_painter_page.dart';

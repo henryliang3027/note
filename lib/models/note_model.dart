@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:note/models/drawn_line.dart';
+import 'package:note/models/draw_line.dart';
 
 part 'note_model.g.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
-part 'drawn_line.g.dart';
+part 'draw_line.g.dart';
 
 @HiveType(typeId: 4)
 class DrawLine {
