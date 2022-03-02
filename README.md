@@ -2,7 +2,10 @@
 
 Note is built using flutter-bloc and stores the notes using Hive.
 
-## Features of note
+## note Demo
+Refer to my video on Youtube: https://youtu.be/SK-nN-6OZJM.
+
+## note Features
 
 <h4 align="center">
 1. Home Notes Screen : List all notes you have created.
