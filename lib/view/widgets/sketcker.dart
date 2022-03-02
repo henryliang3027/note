@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:note/models/drawn_line.dart';
+import 'package:note/models/draw_line.dart';
 
 class Sketcher extends CustomPainter {
-  final List<DrawnLine?> lines;
+  final List<DrawLine?> lines;
 
   Sketcher({required this.lines});
 

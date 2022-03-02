@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:note/models/drawn_line.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note/models/draw_line.dart';
 import 'package:note/models/note_model.dart';
-import 'package:note/patterns/draw_line_manager.dart';
+import 'package:note/manager/draw_line_manager.dart';
+import 'package:note/repositories/file_repository.dart';
 import 'package:note/view/widgets/sketcker.dart';
 import 'package:flutter/rendering.dart';
-import 'package:note/utils/utils.dart';
 import 'dart:ui' as ui;
 
 class NotePainterPage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _NotePainterPageState extends State<NotePainterPage> {
   late DrawLineManager _drawLineManager;
 
   late String? path;
-  late List<DrawnLine?> lines;
+  late List<DrawLine?> lines;
 
   @override
   void initState() {
@@ -37,7 +38,7 @@ class _NotePainterPageState extends State<NotePainterPage> {
     // path = widget.imageContent != null ? widget.imageContent!.path : null;
     lines = widget.imageContent != null
         ? widget.imageContent!.lines
-        : <DrawnLine?>[];
+        : <DrawLine?>[];
 
     _drawLineManager = DrawLineManager();
     if (lines.isNotEmpty) {
@@ -132,9 +133,9 @@ class _NotePainterPageState extends State<NotePainterPage> {
           CurrentCanvas(
             selectedColorHex: _selectedColor.value,
             selectedWidth: _selectedWidth,
-            onFinished: (drawnLine) {
+            onFinished: (DrawLine) {
               setState(() {
-                _drawLineManager.redos.add(drawnLine);
+                _drawLineManager.redos.add(DrawLine);
               });
             },
           ),
@@ -151,7 +152,9 @@ class _NotePainterPageState extends State<NotePainterPage> {
       ByteData? byteData =
           await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List? pngBytes = byteData!.buffer.asUint8List();
-      String _imageSavePath = await Util.saveToTemporaryDirectory(pngBytes);
+      String _imageSavePath =
+          await RepositoryProvider.of<FileRepository>(context)
+              .saveToTemporaryDirectory(pngBytes);
 
       // if (path != null) {
       //   File(path!).delete();
@@ -161,7 +164,7 @@ class _NotePainterPageState extends State<NotePainterPage> {
         return ImageContent(
             imageType: ImageType.picture,
             path: _imageSavePath,
-            lines: <DrawnLine>[]);
+            lines: <DrawLine>[]);
       } else {
         return ImageContent(
             imageType: ImageType.picture,
@@ -177,7 +180,7 @@ class _NotePainterPageState extends State<NotePainterPage> {
 class MainCanvas extends StatefulWidget {
   const MainCanvas({Key? key, required this.lines}) : super(key: key);
 
-  final List<DrawnLine?> lines;
+  final List<DrawLine?> lines;
 
   @override
   State<MainCanvas> createState() => _MainCanvasState();
@@ -211,18 +214,18 @@ class CurrentCanvas extends StatefulWidget {
 
   final int selectedColorHex;
   final double selectedWidth;
-  final Function(DrawnLine) onFinished;
+  final Function(DrawLine) onFinished;
 
   @override
   State<CurrentCanvas> createState() => _CurrentCanvasState();
 }
 
 class _CurrentCanvasState extends State<CurrentCanvas> {
-  late DrawnLine _currentLine;
+  late DrawLine _currentLine;
 
   @override
   void initState() {
-    _currentLine = DrawnLine();
+    _currentLine = DrawLine();
     super.initState();
   }
 
@@ -251,7 +254,7 @@ class _CurrentCanvasState extends State<CurrentCanvas> {
     RenderBox box = context.findRenderObject() as RenderBox;
     Offset point = box.globalToLocal(details.globalPosition);
 
-    _currentLine = DrawnLine(
+    _currentLine = DrawLine(
         path: [Offset(point.dx, point.dy)],
         colorHex: widget.selectedColorHex,
         width: widget.selectedWidth);
@@ -268,6 +271,6 @@ class _CurrentCanvasState extends State<CurrentCanvas> {
   void onPanEnd(DragEndDetails details) {
     print('onPanEnd');
     widget.onFinished(_currentLine);
-    _currentLine = DrawnLine();
+    _currentLine = DrawLine();
   }
 }
