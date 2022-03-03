@@ -5,6 +5,7 @@ import 'package:note/bloc/note_bloc.dart';
 import 'package:note/models/note_model.dart';
 import 'package:note/view/note_edit_page.dart';
 import 'package:note/view/widgets/color_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NotePage extends StatefulWidget {
   const NotePage({Key? key}) : super(key: key);
@@ -22,6 +23,22 @@ class _NotePageState extends State<NotePage> {
     _selectedNotes = <int>[];
     BlocProvider.of<NoteBloc>(context).add(GetNotesEvent());
     super.initState();
+  }
+
+  void _loadLastSelectedNote(List<Note> notes) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final int? lastSelectedNote = prefs.getInt('last_selected_note');
+    if (lastSelectedNote != null && lastSelectedNote != -1) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => NoteEditPage(
+                  isEdit: true,
+                  note: notes[lastSelectedNote],
+                  index: lastSelectedNote,
+                )),
+          ));
+    }
   }
 
   @override
@@ -85,6 +102,7 @@ class _NotePageState extends State<NotePage> {
                 child: CircularProgressIndicator(),
               );
             case NoteStatus.success:
+              _loadLastSelectedNote(state.notes);
               return _NoteList(
                 notes: state.notes,
                 selectedNotes: _selectedNotes,
@@ -191,8 +209,11 @@ class _NoteList extends StatelessWidget {
               tileColor: colors[notes[index].colorId],
               title: Text(notes[index].title),
               subtitle: Text(notes[index].content),
-              onTap: () {
+              onTap: () async {
                 if (selectedNotes.isEmpty) {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setInt('last_selected_note', index);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
