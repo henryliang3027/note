@@ -1,13 +1,8 @@
 name: Main workflow
 on: 
   push:
-    branches:
-      - master
-      - v0.1.0-beta
-  pull_request:
-    branches:
-      - master
-      - v0.1.0-beta
+    tags:
+      - v*
 jobs:
   build:
     name: Build & Release
