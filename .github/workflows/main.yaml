@@ -1,25 +1,32 @@
-name: Main workflow
-on: 
+name: Little Flower App
+
+on:
   push:
-    tags:
-      - v*
+    branches:
+      - v0.1.0-beta
+
 jobs:
   build:
-    name: Build & Release
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v2
+      - uses: actions/setup-java@v1
         with:
-          distribution: 'zulu'
-          java-version: '11'
-      - uses: subosito/flutter-action@v2
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.10.0'
+          channel: 'stable' # or: 'beta', 'dev' or 'master'
+      - run: echo $ANDROID_KEY_STORE | base64 -di > android/app/key.jks
+        env:
+          ANDROID_KEY_STORE: ${{ secrets.ANDROID_KEY_STORE }}
       - run: flutter pub get
-      - run: flutter build apk --release
-      - name: Release apk
-        uses: ncipollo/release-action@v1.5.0
+      - run: flutter build appbundle
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+      - name: upload appbundle
+        uses: actions/upload-artifact@v2
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk"
-          token: ${{ secrets.TOKEN }}
+          name: app bundle
+          path: build/app/outputs/bundle/release/app-release.aab
