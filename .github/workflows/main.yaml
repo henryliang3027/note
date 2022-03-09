@@ -18,3 +18,8 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk
       - run: flutter build appbundle
+      - name: Release apk
+        uses: ncipollo/release-action@v1.5.0
+        with:
+          artifacts: "build/app/outputs/apk/release/*.apk"
+          token: ${{ secrets.TOKEN }}
