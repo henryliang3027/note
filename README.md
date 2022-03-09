@@ -1,4 +1,5 @@
 # note
+[![build and release](https://github.com/henryliang3027/note/actions/workflows/main.yaml/badge.svg)](https://github.com/henryliang3027/note/actions/workflows/main.yaml)
 
 Note is built using flutter-bloc and stores the notes using Hive.
 
