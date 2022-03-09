@@ -17,9 +17,14 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '11'
-      - uses: henryliang3027/note@master
+      - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.10.0'
       - run: flutter pub get
       - run: flutter build apk
       - run: flutter build appbundle
+      - name: Push to Releases
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*.apk"
+          token: ${{ secrets.TOKEN }}
