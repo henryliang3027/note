@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - master
+      - v0.1.0-beta
   pull_request:
     branches:
       - master
+      - v0.1.0-beta
 jobs:
   build:
     name: Build & Release
