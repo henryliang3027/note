@@ -3,7 +3,10 @@
 Note is built using flutter-bloc and stores the notes using Hive.
 
 ## note Demo
-Refer to my video on Youtube: https://youtu.be/SK-nN-6OZJM.
+Refer to my video on Youtube : https://youtu.be/SK-nN-6OZJM.
+
+## Download from play store
+Download APP from : https://play.google.com/store/apps/details?id=com.red.note
 
 ## note Features
 
