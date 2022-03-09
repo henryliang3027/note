@@ -1,0 +1,24 @@
+name: Main workflow
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build & Release
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: henryliang3027/note@v2
+        with:
+          flutter-version: '2.10.0'
+      - run: flutter pub get
+      - run: flutter build apk
+      - run: flutter build appbundle
