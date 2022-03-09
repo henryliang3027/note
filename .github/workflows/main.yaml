@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '11'
-      - uses: henryliang3027/note@v0.1.0-beta
+      - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.10.0'
       - run: flutter pub get
