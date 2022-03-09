@@ -18,7 +18,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-      - uses: henryliang3027/note@v2
+      - uses: henryliang3027/note
         with:
           flutter-version: '2.10.0'
       - run: flutter pub get
