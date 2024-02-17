@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note/models/draw_line.dart';
 import 'package:note/models/note_model.dart';
 import 'package:note/manager/draw_line_manager.dart';
-import 'package:note/repositories/file_repostory.dart';
+import 'package:note/repositories/file_repository.dart';
 import 'package:note/view/widgets/sketcker.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
@@ -53,11 +53,11 @@ class _NotePainterPageState extends State<NotePainterPage> {
       backgroundColor: Colors.yellow.shade100,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.check, //check icon
-            color: Colors.black,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
           onPressed: () async {
             ImageContent? imageContent = await save();

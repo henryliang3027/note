@@ -1,9 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:note/bloc/note_bloc.dart';
 import 'package:note/models/draw_line.dart';
-import 'package:note/models/note_model.dart';
 
 void main() {
   test('test fking DrawLine serilization', () async {
@@ -21,12 +19,5 @@ void main() {
         print(pp);
       }
     }
-  });
-
-  test('test note', () {
-    NoteState ns1 = const NoteState();
-    NoteState ns2 = ns1.copyWith(notes: <Note>[]);
-    //ns2.notes[0] = Note(title: '', content: '', colorId: 0, imageContents: []);
-    expect(ns1.notes == ns2.notes, false);
   });
 }

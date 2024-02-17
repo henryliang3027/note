@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note/app.dart';
 import 'package:note/models/draw_line.dart';
+import 'package:note/models/draw_line.dart';
 import 'package:note/models/note_model.dart';
 import 'package:note/repositories/file_repostory.dart';
 import 'package:note/repositories/note_repository.dart';

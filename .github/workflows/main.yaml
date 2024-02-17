@@ -1,30 +1,32 @@
-name: Build & Release
-on: 
+name: build and release
+
+on:
   push:
     branches:
-      - master
       - v0.1.0-beta
-  pull_request:
-    branches:
-      - master
-      - v0.1.0-beta
+
 jobs:
   build:
-    name: Build & Release
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: '11'
+          java-version: '12.x'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.10.0'
+          channel: 'stable' # or: 'beta', 'dev' or 'master'
+      - run: echo $ANDROID_KEY_STORE | base64 -di > android/app/key.jks
+        env:
+          ANDROID_KEY_STORE: ${{ secrets.ANDROID_KEY_STORE }}
       - run: flutter pub get
-      - run: flutter build apk
       - run: flutter build appbundle
-      - name: Push to Releases
-        uses: ncipollo/release-action@v1.9.0
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+      - name: upload appbundle
+        uses: actions/upload-artifact@v2
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk"
-          token: ${{ secrets.TOKEN }}
+          name: app bundle
+          path: build/app/outputs/bundle/release/app-release.aab

@@ -122,11 +122,15 @@ class _NotePageState extends State<NotePage> {
           }
         },
       ),
-      floatingActionButtonLocation: _selectedNotes.isEmpty
-          ? FloatingActionButtonLocation.endDocked
-          : null,
+      floatingActionButtonLocation:
+          _selectedNotes.isEmpty ? FloatingActionButtonLocation.endFloat : null,
       floatingActionButton: _selectedNotes.isEmpty
           ? FloatingActionButton(
+              shape: const CircleBorder(
+                side: BorderSide.none,
+              ),
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
               onPressed: () {
                 Navigator.push(
                     context,
@@ -142,7 +146,7 @@ class _NotePageState extends State<NotePage> {
             )
           : null,
       bottomNavigationBar: _selectedNotes.isEmpty
-          ? const _BottomAppBar()
+          ? null
           : _RemoveModeBottomAppBar(
               selectedNotes: _selectedNotes,
               onRemoveSelectedNotes: () {
@@ -184,7 +188,7 @@ class _NoteList extends StatelessWidget {
               border: selectedNotes.contains(index)
                   ? Border.all(
                       width: 4.0,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                     )
                   : null,
             ),
@@ -236,7 +240,7 @@ class _RemoveModeBottomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
-      color: Colors.blue,
+      color: Theme.of(context).colorScheme.primary,
       child: IconTheme(
         data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
         child: Row(
