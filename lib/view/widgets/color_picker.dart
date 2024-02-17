@@ -24,39 +24,46 @@ class _ColorPickerState extends State<ColorPicker> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-      child: GridView.count(
-        crossAxisCount: 4,
-        children: List.generate(
-          colors.length,
-          (index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  print('selectedIndex $_selectedIndex');
-                  widget.onSelectedIndexChanged(index);
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: index == _selectedIndex
-                        ? Border.all(
-                            width: 4.0,
-                            color: Colors.orange,
-                          )
-                        : null,
-                    color: colors[index],
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 20.0,
+          left: 10.0,
+          right: 10.0,
+        ),
+        child: GridView.count(
+          crossAxisCount: 4,
+          children: List.generate(
+            colors.length,
+            (index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    print('selectedIndex $_selectedIndex');
+                    widget.onSelectedIndexChanged(index);
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: index == _selectedIndex
+                          ? Border.all(
+                              width: 4.0,
+                              color: Colors.orange,
+                            )
+                          : null,
+                      color: colors[index],
+                    ),
+                    height: 10,
+                    width: 10,
                   ),
-                  height: 10,
-                  width: 10,
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

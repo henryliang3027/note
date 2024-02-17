@@ -24,6 +24,31 @@ class _NotePageState extends State<NotePage> {
     super.initState();
   }
 
+  Future<bool?> showConfirmRemoveDialog() async {
+    return showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          'Remove',
+          style: TextStyle(
+            color: Colors.red,
+          ),
+        ),
+        content: const Text('Do you want to remove selected nodes?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     print('build _selectedNotes ${_selectedNotes.length}');
@@ -149,13 +174,20 @@ class _NotePageState extends State<NotePage> {
           ? null
           : _RemoveModeBottomAppBar(
               selectedNotes: _selectedNotes,
-              onRemoveSelectedNotes: () {
-                List<int> _tempSelectedNotes = List<int>.from(_selectedNotes);
-                BlocProvider.of<NoteBloc>(context)
-                    .add(RemoveNoteEvent(_tempSelectedNotes));
-                setState(() {
-                  _selectedNotes.clear();
-                });
+              onRemoveSelectedNotes: () async {
+                bool? isConfirm = await showConfirmRemoveDialog();
+
+                if (isConfirm != null) {
+                  if (isConfirm) {
+                    List<int> _tempSelectedNotes =
+                        List<int>.from(_selectedNotes);
+                    BlocProvider.of<NoteBloc>(context)
+                        .add(RemoveNoteEvent(_tempSelectedNotes));
+                    setState(() {
+                      _selectedNotes.clear();
+                    });
+                  }
+                }
               },
             ),
     );
