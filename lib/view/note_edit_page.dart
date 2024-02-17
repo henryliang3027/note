@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:note/bloc/note_bloc.dart';
 import 'package:note/models/draw_line.dart';
@@ -8,7 +9,6 @@ import 'package:note/repositories/file_repository.dart';
 import 'package:note/view/note_painter_page.dart';
 import 'package:note/view/photo_edit_page.dart';
 import 'widgets/color_picker.dart';
-import 'package:images_picker/images_picker.dart';
 import 'dart:io';
 
 class NoteEditPage extends StatefulWidget {
@@ -234,17 +234,13 @@ class _NoteEditPageState extends State<NoteEditPage> {
                     shape: const BeveledRectangleBorder(), //circular button
                     fillColor: Colors.transparent, //background color
                     onPressed: () async {
-                      List<Media>? res = await ImagesPicker.openCamera(
-                        // pickType: PickType.video,
-                        pickType: PickType.image,
-                        quality: 0.8,
-                        maxSize: 800,
-                        maxTime: 15,
-                      );
-                      if (res != null) {
+                      final ImagePicker picker = ImagePicker();
+                      final XFile? photo =
+                          await picker.pickImage(source: ImageSource.camera);
+                      if (photo != null) {
                         ImageContent imageContent = ImageContent(
                           imageType: ImageType.photo,
-                          path: res[0].path,
+                          path: photo.path,
                           lines: <DrawLine>[],
                         );
                         setState(() {
@@ -261,17 +257,13 @@ class _NoteEditPageState extends State<NoteEditPage> {
                     shape: const BeveledRectangleBorder(), //circular button
                     fillColor: Colors.transparent, //background color
                     onPressed: () async {
-                      List<Media>? res = await ImagesPicker.pick(
-                        count: 1,
-                        pickType: PickType.image,
-                        language: Language.System,
-                        maxTime: 30,
-                      );
-                      print(res);
-                      if (res != null) {
+                      final ImagePicker picker = ImagePicker();
+                      final XFile? image =
+                          await picker.pickImage(source: ImageSource.gallery);
+                      if (image != null) {
                         String newFilePath =
                             await RepositoryProvider.of<FileRepository>(context)
-                                .copyToTemporaryDirectory(res[0].path);
+                                .copyToTemporaryDirectory(image.path);
 
                         ImageContent imageContent = ImageContent(
                           imageType: ImageType.photo,

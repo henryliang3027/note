@@ -29,7 +29,16 @@ class App extends StatelessWidget {
         child: MaterialApp(
           title: 'Notes',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.indigo,
+              background: Colors.grey[50],
+            ),
+            appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.white),
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.indigo,
+            ),
+            useMaterial3: true,
           ),
           home: const NotePage(),
         ),

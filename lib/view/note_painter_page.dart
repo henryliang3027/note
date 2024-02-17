@@ -53,11 +53,11 @@ class _NotePainterPageState extends State<NotePainterPage> {
       backgroundColor: Colors.yellow.shade100,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.check, //check icon
-            color: Colors.black,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
           onPressed: () async {
             ImageContent? imageContent = await save();
